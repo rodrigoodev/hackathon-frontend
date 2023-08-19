@@ -5,13 +5,13 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="sumarise">
-    <h1>Meus Resumos</h1>
+  <div class="dashboard">
+    <h1>dashboard</h1>
   </div>
 </template>
 
 <style>
-.sumarise {
+.dashboard {
   padding: 50px;
 }
 </style>
