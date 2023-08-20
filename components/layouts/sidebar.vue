@@ -2,7 +2,9 @@
 
 <template>
   <div class="sidebar">
-    <div class="sidebar__logo">Sumarise</div>
+    <div class="sidebar__logo">
+      <img src="/img/sumarise.png" alt="logo" width="160" />
+    </div>
     <div class="sidebar__menu-wrapper">
       <ul class="sidebar-menu-list">
         <nuxt-link to="/meus-resumos">

@@ -9,6 +9,9 @@ definePageMeta({
 const showDialog = ref(false);
 
 function toggleDialog() {
+  if (!showDialog.value) {
+    useRouter().push("/meus-resumos");
+  }
   showDialog.value = !showDialog.value;
 }
 </script>
