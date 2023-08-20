@@ -14,5 +14,4 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
-  plugins: ['~/plugins/vue-toastification.ts'],
 })

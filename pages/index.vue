@@ -90,9 +90,6 @@
 <script>
 import { mapActions, mapState } from "pinia";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useToast } from "vue-toastification";
-
-const toast = useToast();
 export default {
   data() {
     return {
@@ -132,7 +129,6 @@ export default {
         const errorMessage = err.response
           ? err.response._data.message
           : "Erro desconhecido";
-        toast.error(errorMessage);
       }
     },
     async signUp() {
@@ -147,9 +143,8 @@ export default {
         const token = data.token;
         console.log("s");
         //this.$router.push("/meus-resumos");
-        toast.success("Usuário criado com sucesso!");
       } catch (err) {
-        toast.error("erro ao criar usuário");
+        console.log(err);
       }
     },
   },
