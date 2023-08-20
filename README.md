@@ -6,94 +6,77 @@ Este projeto tem como objetivo desenvolver uma plataforma de geração automáti
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
 
 ### 📋 Pré-requisitos
 
-De que coisas você precisa para instalar o software e como instalá-lo?
+De que coisas você precisa para conseguir utilizar o projeto em sua maquina local ? 
 
-```
-Dar exemplos
-```
+* [Node.js](http://www.dropwizard.io/1.0.2/docs/](https://nodejs.org/en))
+* [Vue.js]([https://maven.apache.org/](https://vuejs.org/guide/quick-start.html))
+* [Nuxt](https://v2.nuxt.com/pt/)
 
 ### 🔧 Instalação
 
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
+1.Abra o terminal no seu computador.
 
-Diga como essa etapa será:
+2.Navegue até o diretório onde você deseja clonar o projeto. Você pode usar o comando cd para navegar pelos diretórios.
 
-```
-Dar exemplos
-```
-
-E repita:
+3.Execute o seguinte comando para clonar o repositório:
 
 ```
-Até finalizar
+git clone https://github.com/rodrigoodev/hackathon-frontend.git
 ```
 
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
+Após clonar o projeto abra o terminal.
+
+Navegue até o diretório do projeto clonado usando o comando cd. Por exemplo:
+
+```
+cd hackathon-frontend
+```
+
+Agora, dentro do diretório do projeto, execute o comando npm install:
+
+```
+npm install
+```
+Isso iniciará o processo de instalação das dependências listadas no arquivo package.json. Aguarde até que todas as dependências sejam baixadas e instaladas.
+
+Após a conclusão do comando npm install, você terá todas as bibliotecas e módulos necessários para executar o projeto. Certifique-se de ter o Node.js e o npm instalados no seu sistema antes de executar esses comandos.
 
 ## ⚙️ Executando os testes
 
-Explicar como executar os testes automatizados para este sistema.
+Certifique-se de que você está no diretório do projeto no terminal (caso contrário, use o comando cd para entrar no diretório).
 
-### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
+Execute o seguinte comando para rodar os testes com o Jest:
 
 ```
-Dar exemplos
+npm run test
 ```
 
-### ⌨️ E testes de estilo de codificação
+O Jest vai procurar por arquivos de teste dentro do seu projeto, geralmente seguindo o padrão de nomenclatura como *.test.js ou *.spec.js. Ele vai executar os testes encontrados e mostrar os resultados no terminal.
 
-Explique que eles verificam esses testes e porquê.
+Ao rodar o comando npm test, você verá a saída dos testes no terminal, incluindo os testes que passaram e os que falharam, juntamente com informações sobre o tempo de execução e a cobertura dos testes, se configurado.
 
-```
-Dar exemplos
-```
 
 ## 📦 Implantação
 
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+"Explore Nossos Outros Repositórios para Uma Visão Completa do Modelo de Funcionamento!
 
-## 🛠️ Construído com
+Dê uma olhada nos nossos projetos complementares para obter uma compreensão mais profunda de como o modelo funciona em diferentes contextos. Esses repositórios oferecem insights abrangentes e exemplos práticos que enriquecerão sua compreensão do projeto e suas aplicações. Não perca a chance de mergulhar ainda mais fundo na nossa abordagem e descobrir todo o potencial por trás do que construímos. Clique nos links abaixo para começar:
 
-Mencione as ferramentas que você usou para criar seu projeto
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
-
-## 🖇️ Colaborando
-
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
+* [API](https://github.com/leonakao/hackathon-api)
+* [IA](https://github.com/matheushirota/ai-hackathon)
 
 ## 📌 Versão
 
 Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
 
-## ✒️ Autores
 
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
-
-* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
-
-Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
-
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
 
 ## 🎁 Expressões de gratidão
 
-* Conte a outras pessoas sobre este projeto 📢;
-* Convide alguém da equipe para uma cerveja 🍺;
-* Um agradecimento publicamente 🫂;
-* etc.
+Gostaria de expressar minha sincera gratidão à equipe da Quero Educação pela organização e execução impecáveis do evento CodeInQuero2023. Foi uma experiência valiosa, repleta de aprendizado e conexões. Obrigado por proporcionarem essa oportunidade inspiradora! 🙏🌟
 
 
 ---
-⌨️ com ❤️ por [Armstrong Lohãns](https://gist.github.com/lohhans) 😊
