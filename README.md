@@ -12,7 +12,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 De que coisas você precisa para conseguir utilizar o projeto em sua maquina local ? 
 
 * [Node.js](https://nodejs.org/en)
-* [Vue.js]((https://vuejs.org/guide/quick-start.html))
+* [Vue.js](https://vuejs.org/guide/quick-start.html)
 * [Nuxt](https://v2.nuxt.com/pt/)
 
 ### 🔧 Instalação
