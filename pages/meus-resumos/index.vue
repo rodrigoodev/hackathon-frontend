@@ -1,6 +1,6 @@
 <script setup>
-import ModalUploadFile from "@/components/pages/meus-resumos/ModalUploadFile.vue";
 import { ref } from "vue";
+import ModalUploadFile from "@/components/pages/meus-resumos/ModalUploadFile.vue";
 import TableSumarise from "@/components/pages/meus-resumos/TableSumarise.vue";
 
 definePageMeta({
