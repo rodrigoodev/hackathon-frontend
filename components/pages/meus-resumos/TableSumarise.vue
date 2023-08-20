@@ -126,7 +126,7 @@ const convertStatus = {
       </div>
       <div class="table-sumarise__body__item">
         <button
-          @click="downloadFile(sumariseItem.id)"
+          @click="downloadFile(sumariseItem.filePath)"
           v-if="sumariseItem.status == 'done'"
         >
           Download

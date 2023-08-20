@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div>
-      <button @click="showToast">Mostrar Toast</button>
-    </div>
+  <div class="wrapper-container">
     <div class="container" id="container">
       <div class="form-container sign-up-container" @submit.prevent="signUp">
         <form action="#">
@@ -135,7 +132,7 @@ export default {
         const errorMessage = err.response
           ? err.response._data.message
           : "Erro desconhecido";
-        toast.error((errorMessage));
+        toast.error(errorMessage);
       }
     },
     async signUp() {
@@ -177,7 +174,7 @@ export default {
   box-sizing: border-box;
 }
 
-body {
+.wrapper-container {
   font-family: "Montserrat", sans-serif;
   background: #f6f5f7;
   display: flex;
