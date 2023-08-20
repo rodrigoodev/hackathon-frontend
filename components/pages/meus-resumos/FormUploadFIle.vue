@@ -1,13 +1,12 @@
 <script setup>
 import { ref } from "vue";
-import { useAuthStore } from "@/store/useAuthStore";
 const formUpload = ref({
   title: "",
   file: "",
   link: "",
   description: "",
-  subject: null,
-  grade: "",
+  subject: "mathematics",
+  grade: "grade1",
 });
 
 const isShowUploadButton = ref(true);
@@ -46,29 +45,10 @@ const grades = {
   grade11: "2º Ano médio",
   grade12: "3º Ano médio",
 };
-
-const authStore = useAuthStore();
-
-async function sendForm() {
-  try {
-    const data = await $fetch("http://45.79.148.159/summaries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${authStore.token}`,
-      },
-      body: JSON.stringify(formUpload.value),
-    });
-    console.log(data);
-  } catch (err) {
-    console.log(err);
-  }
-}
 </script>
 
 <template>
   <div class="form-upload">
-    {{ formUpload }}
     <div class="form-group">
       <label for="name">Nome do resumo</label><br />
       <input
@@ -95,7 +75,11 @@ async function sendForm() {
         id="category"
         v-model="formUpload.subject"
       >
-        <option :value="index" v-for="(subject, index) in subjects">
+        <option
+          :key="index"
+          :value="index"
+          v-for="(subject, index) in subjects"
+        >
           {{ subject }}
         </option>
       </select>
@@ -107,17 +91,20 @@ async function sendForm() {
         id="grades"
         v-model="formUpload.grade"
       >
-        <option :value="index" v-for="(grade, index) in grades">
+        <option :key="index" :value="index" v-for="(grade, index) in grades">
           {{ grade }}
         </option>
       </select>
     </div>
-
     <div class="form-choose">
       <div class="form-choose__button" @click="setShowUploadButton(true)">
         Upload
       </div>
-      <div class="form-choose__button" @click="setShowUploadButton(false)">
+      <div
+        class="form-choose__button"
+        id="link-button"
+        @click="setShowUploadButton(false)"
+      >
         Link
       </div>
     </div>
@@ -136,7 +123,10 @@ async function sendForm() {
       />
     </div>
     <div class="form-group">
-      <button class="btn btn-primary form-upload__button" @click="sendForm">
+      <button
+        class="btn btn-primary form-upload__button"
+        @click="$emit('sendForm', formUpload)"
+      >
         Enviar
       </button>
     </div>

@@ -1,10 +1,35 @@
 <script setup>
 import FormUploadFile from "./FormUploadFIle.vue";
+
+import { useAuthStore } from "@/store/useAuthStore";
+
+function handleSendForm(formUpload) {
+  console.log("send form", formUpload);
+  submitForm(formUpload);
+}
+
+const authStore = useAuthStore();
+
+async function submitForm(form) {
+  try {
+    const data = await $fetch("http://45.79.148.159/summaries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authStore.token}`,
+      },
+      body: JSON.stringify(form),
+    });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
 </script>
 <template>
   <div class="wrapper-modal-upload-file" @click.prevent="$emit('clicked')">
     <div @click.stop="" class="box">
-      <FormUploadFile />
+      <FormUploadFile @sendForm="handleSendForm" />
     </div>
   </div>
 </template>

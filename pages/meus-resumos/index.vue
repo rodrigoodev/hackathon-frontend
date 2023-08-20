@@ -2,13 +2,9 @@
 import { ref } from "vue";
 import ModalUploadFile from "@/components/pages/meus-resumos/ModalUploadFile.vue";
 import TableSumarise from "@/components/pages/meus-resumos/TableSumarise.vue";
-import { useAuthStore } from "@/store/useAuthStore";
 definePageMeta({
   layout: "custom",
 });
-
-const authStore = useAuthStore();
-console.log(authStore.token);
 
 const showDialog = ref(false);
 
@@ -24,7 +20,6 @@ function toggleDialog() {
         <h1>Gerar resumo</h1>
         <h2>
           Nossa que legal, clique nesse botão e vamos subir seu primeiro resumo
-          {{ authStore.token }}
         </h2>
       </div>
       <div class="sumarise-new__button">
