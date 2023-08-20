@@ -68,7 +68,7 @@
     transition: 0.3s;
 
     &:hover {
-      background: #3498db;
+      background: var(--color-primary);
       color: white;
     }
 
@@ -77,7 +77,7 @@
   }
 
   .router-link-active {
-    background: #3498db;
+    background: var(--color-primary);
     color: white;
     border-radius: 8px;
   }
