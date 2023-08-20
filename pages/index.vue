@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia";
+import { useAuthStore } from "@/store/useAuthStore";
 export default {
   data() {
     return {
@@ -71,14 +73,30 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState(useAuthStore, ["token"]),
+  },
   methods: {
-    signIn() {
-      console.log(
-        "Login attempt with email:",
-        this.signInData.email,
-        "and password:",
-        this.signInData.password
-      );
+    ...mapActions(useAuthStore, ["updateToken"]),
+    async signIn() {
+      try {
+        const data = await $fetch("http://45.79.148.159/auth/sign-in", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.signInData),
+        });
+        const token = data.token;
+        console.log(token);
+        this.updateToken(token);
+        this.$router.push("/meus-resumos");
+
+        const serializedValue = JSON.stringify(token);
+        localStorage.setItem("token", serializedValue);
+      } catch (err) {
+        console.log(err);
+      }
     },
     signUp() {
       console.log(
@@ -107,7 +125,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 * {
   box-sizing: border-box;
 }

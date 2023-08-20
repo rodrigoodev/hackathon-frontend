@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         '@fortawesome/free-brands-svg-icons'
     ]
   },
-  // buildModules: [
-  //   '@nuxtjs/style-resources'
-  // ],
+  modules: [
+    '@pinia/nuxt',
+  ],
 })

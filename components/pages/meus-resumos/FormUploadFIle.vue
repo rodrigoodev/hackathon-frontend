@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from "vue";
+import { useAuthStore } from "@/store/useAuthStore";
 const formUpload = ref({
-  name: "",
+  title: "",
   file: "",
   link: "",
   description: "",
-  category: null,
+  subject: null,
   grade: "",
 });
 
@@ -45,16 +46,35 @@ const grades = {
   grade11: "2º Ano médio",
   grade12: "3º Ano médio",
 };
+
+const authStore = useAuthStore();
+
+async function sendForm() {
+  try {
+    const data = await $fetch("http://45.79.148.159/summaries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authStore.token}`,
+      },
+      body: JSON.stringify(formUpload.value),
+    });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
 </script>
 
 <template>
   <div class="form-upload">
+    {{ formUpload }}
     <div class="form-group">
       <label for="name">Nome do resumo</label><br />
       <input
         id="name"
         class="form-control-text"
-        v-model="formUpload.name"
+        v-model="formUpload.title"
         placeholder="Nome do resumo"
       />
     </div>
@@ -73,7 +93,7 @@ const grades = {
       <select
         class="form-control-select"
         id="category"
-        v-model="formUpload.category"
+        v-model="formUpload.subject"
       >
         <option :value="index" v-for="(subject, index) in subjects">
           {{ subject }}
@@ -85,7 +105,7 @@ const grades = {
       <select
         class="form-control-select"
         id="grades"
-        v-model="formUpload.grades"
+        v-model="formUpload.grade"
       >
         <option :value="index" v-for="(grade, index) in grades">
           {{ grade }}
@@ -116,7 +136,9 @@ const grades = {
       />
     </div>
     <div class="form-group">
-      <button class="btn btn-primary form-upload__button">Enviar</button>
+      <button class="btn btn-primary form-upload__button" @click="sendForm">
+        Enviar
+      </button>
     </div>
   </div>
 </template>

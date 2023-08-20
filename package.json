@@ -19,6 +19,11 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.6",
     "sass": "^1.66.1"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
