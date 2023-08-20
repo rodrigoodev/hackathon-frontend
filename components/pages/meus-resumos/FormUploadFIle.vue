@@ -7,6 +7,7 @@ const formUpload = ref({
   description: "",
   subject: "mathematics",
   grade: "grade1",
+  model: 1,
 });
 
 const isShowUploadButton = ref(true);
@@ -14,6 +15,15 @@ const isShowUploadButton = ref(true);
 function setShowUploadButton(value) {
   isShowUploadButton.value = value;
 }
+
+const models = [
+  { id: 1, name: "Modelo Geral" },
+  { id: 2, name: "Modelo com foco em alunos com TDAH" },
+  {
+    id: 3,
+    name: "Modelo com foco em alunos com Transtorno do Espectro Autista (TEA)",
+  },
+];
 
 const subjects = {
   mathematics: "Matemática",
@@ -93,6 +103,18 @@ const grades = {
       >
         <option :key="index" :value="index" v-for="(grade, index) in grades">
           {{ grade }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="model">Selecione o modelo</label><br />
+      <select class="form-control-select" id="model" v-model="formUpload.model">
+        <option
+          :key="model.id"
+          :value="model.id"
+          v-for="(model, index) in models"
+        >
+          {{ model.name }}
         </option>
       </select>
     </div>
