@@ -1,5 +1,19 @@
 <script setup>
 import Sidebar from "@/components/layouts/sidebar.vue";
+import { useAuthStore } from "@/store/useAuthStore";
+
+const authStore = useAuthStore();
+
+const token =
+  typeof window !== "undefined"
+    ? JSON.parse(localStorage.getItem("token"))
+    : null;
+
+if (token) {
+  authStore.updateToken(token);
+} else {
+  useRouter().push("/");
+}
 </script>
 <template>
   <div class="auth-wrapper">
