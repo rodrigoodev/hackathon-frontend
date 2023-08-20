@@ -1,30 +1,6 @@
 <script setup>
 import { useAuthStore } from "@/store/useAuthStore";
 
-const getTableSumariseData = [
-  {
-    id: 1,
-    name: "Geografia aula 1",
-    group: "Geografia Unifesp",
-    category: "Geografia",
-    grade: "Fundamental",
-  },
-  {
-    id: 2,
-    name: "Geografia aula 2",
-    group: "Geografia Unifesp",
-    category: "Geografia",
-    grade: "Fundamental",
-  },
-  {
-    id: 3,
-    name: "Geografia aula 3",
-    group: "Geografia Unifesp",
-    category: "Geografia",
-    grade: "Fundamental",
-  },
-];
-
 const authStore = useAuthStore();
 
 async function getGroups() {
@@ -125,12 +101,14 @@ const convertStatus = {
         <p>{{ convertStatus[sumariseItem.status] }}</p>
       </div>
       <div class="table-sumarise__body__item">
-        <button
+        <div
           @click="downloadFile(sumariseItem.filePath)"
           v-if="sumariseItem.status == 'done'"
+          class="button-download"
         >
+          <font-awesome-icon :icon="['fa-solid', 'fa-file-arrow-down']" />
           Download
-        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -187,5 +165,9 @@ const convertStatus = {
       align-items: center;
     }
   }
+}
+
+.button-download {
+  cursor: pointer;
 }
 </style>

@@ -75,7 +75,7 @@ const grades = {
         id="description"
         class="form-control-text"
         v-model="formUpload.description"
-        placeholder="youtube.com/..."
+        placeholder="Esse video é sobre "
       />
     </div>
     <div class="form-group">
@@ -118,24 +118,8 @@ const grades = {
         </option>
       </select>
     </div>
-    <div class="form-choose">
-      <div class="form-choose__button" @click="setShowUploadButton(true)">
-        Upload
-      </div>
-      <div
-        class="form-choose__button"
-        id="link-button"
-        @click="setShowUploadButton(false)"
-      >
-        Link
-      </div>
-    </div>
 
-    <div class="form-group" v-if="isShowUploadButton">
-      <label for="file">Faça upload do arquivo</label><br />
-      <input id="file" type="file" />
-    </div>
-    <div class="form-group" v-else>
+    <div class="form-group">
       <label for="link">Coloque o link do video</label><br />
       <input
         id="link"

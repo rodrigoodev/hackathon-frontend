@@ -5,17 +5,6 @@
     <div class="sidebar__logo">Sumarise</div>
     <div class="sidebar__menu-wrapper">
       <ul class="sidebar-menu-list">
-        <nuxt-link to="/dashboard">
-          <li class="sidebar-menu-list__item">
-            <div>
-              <font-awesome-icon
-                class="siderbar-icon"
-                :icon="['fa-solid', 'fa-house']"
-              />
-            </div>
-            Dashboard
-          </li>
-        </nuxt-link>
         <nuxt-link to="/meus-resumos">
           <li class="sidebar-menu-list__item">
             <div>
@@ -32,7 +21,7 @@
             <div>
               <font-awesome-icon
                 class="siderbar-icon"
-                :icon="['fa-solid', 'fa-file-lines']"
+                :icon="['fa-solid', 'fa-right-from-bracket']"
               />
             </div>
             Sair
