@@ -27,7 +27,7 @@
             Meus Resumos
           </li>
         </nuxt-link>
-        <nuxt-link to="/">
+        <nuxt-link to="/logout">
           <li class="sidebar-menu-list__item">
             <div>
               <font-awesome-icon

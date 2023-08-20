@@ -1,4 +1,6 @@
 <script setup>
+import { useAuthStore } from "@/store/useAuthStore";
+
 const getTableSumariseData = [
   {
     id: 1,
@@ -23,17 +25,73 @@ const getTableSumariseData = [
   },
 ];
 
-function downloadFile(id) {
-  console.log("download", id);
+const authStore = useAuthStore();
+
+async function getGroups() {
+  try {
+    const data = await $fetch("http://45.79.148.159/groups", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authStore.token}`,
+      },
+    });
+    console.log("dentro do getGroups", data[0].id);
+
+    const serializedValue = JSON.stringify(data[0].id);
+    localStorage.setItem("group_id", serializedValue);
+
+    const summaries = await getSummariesByGroup();
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-function viewFile(id) {
-  console.log("view", id);
+const groups = await getGroups();
+
+async function getSummariesByGroup() {
+  try {
+    const group_id =
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage.getItem("group_id"))
+        : null;
+
+    const data = await $fetch(
+      `http://45.79.148.159/summaries/group/${group_id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authStore.token}`,
+        },
+      }
+    );
+    console.log("dentro do getSumarise", data);
+
+    const serializedValue = JSON.stringify(data);
+    localStorage.setItem("listSumarise", serializedValue);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-function deleteFile(id) {
-  console.log("delete", id);
+function downloadFile(filePath) {
+  window.open(filePath, "_new");
 }
+
+const getSummariseData = computed(() => {
+  const listSumarise =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("listSumarise"))
+      : [];
+
+  return listSumarise;
+});
+
+const convertStatus = {
+  done: "Concluído",
+  processing: "Em Processamento",
+};
 </script>
 
 <template>
@@ -43,39 +101,36 @@ function deleteFile(id) {
         <p>Nome</p>
       </div>
       <div class="table-sumarise__header__item">
-        <p>Grupo</p>
+        <p>Descrição</p>
       </div>
       <div class="table-sumarise__header__item">
-        <p>Categoria</p>
-      </div>
-      <div class="table-sumarise__header__item">
-        <p>Grade</p>
+        <p>Status</p>
       </div>
       <div class="table-sumarise__header__item">
         <p>Ações</p>
       </div>
     </div>
     <div
-    :key="sumariseItem.id"
+      :key="sumariseItem.id"
       class="table-sumarise__body"
-      v-for="sumariseItem in getTableSumariseData"
+      v-for="sumariseItem in getSummariseData"
     >
       <div class="table-sumarise__body__item">
-        <p>{{ sumariseItem.name }}</p>
+        <p>{{ sumariseItem.title }}</p>
       </div>
       <div class="table-sumarise__body__item">
-        <p>{{ sumariseItem.group }}</p>
+        <p>{{ sumariseItem.description }}</p>
       </div>
       <div class="table-sumarise__body__item">
-        <p>{{ sumariseItem.category }}</p>
+        <p>{{ convertStatus[sumariseItem.status] }}</p>
       </div>
       <div class="table-sumarise__body__item">
-        <p>{{ sumariseItem.grade }}</p>
-      </div>
-      <div class="table-sumarise__body__item">
-        <button @click="downloadFile(sumariseItem.id)">Download</button>
-        <button @click="viewFile(sumariseItem.id)">Visualizar</button>
-        <button @click="deleteFile(sumariseItem.id)">Excluir</button>
+        <button
+          @click="downloadFile(sumariseItem.id)"
+          v-if="sumariseItem.status == 'done'"
+        >
+          Download
+        </button>
       </div>
     </div>
   </div>
