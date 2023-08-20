@@ -1,6 +1,7 @@
 <script setup>
 import ModalUploadFile from "@/components/pages/meus-resumos/ModalUploadFile.vue";
 import { ref } from "vue";
+import TableSumarise from "@/components/pages/meus-resumos/TableSumarise.vue";
 
 definePageMeta({
   layout: "custom",
@@ -31,6 +32,12 @@ function toggleDialog() {
         </div>
       </div>
     </div>
+
+    <div class="sumarise-table">
+      <h1>Todos resumos</h1>
+      <h2>Encontre aqui todos os resumos gerados por você</h2>
+      <TableSumarise />
+    </div>
     <transition name="fade">
       <ModalUploadFile v-if="showDialog" @clicked="toggleDialog" />
     </transition>
@@ -50,7 +57,7 @@ function toggleDialog() {
 
 .sumarise {
   padding: 20px 50px;
-  width: 100%;
+  width: calc(100% - 300px);
 }
 
 .sumarise-new {
@@ -72,5 +79,16 @@ function toggleDialog() {
     justify-content: center;
     color: var(--color-white);
   }
+}
+
+.sumarise-table {
+  display: flex;
+  background: var(--color-white);
+  width: 100%;
+  border-radius: 8px;
+  padding: 18px 32px;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 32px;
 }
 </style>
