@@ -2,50 +2,84 @@
 
 <template>
   <div class="sidebar">
-    <div class="sidebar__logo">sumarise</div>
-    <div class="sidebar__menu">
-      <ul>
-        <li>
-          <nuxt-link href="/dashboard">Dashboard</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link href="/meus-resumos">Meus Resumos</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link href="/logout">Sair</nuxt-link>
-        </li>
+    <div class="sidebar__logo">Sumarise</div>
+    <div class="sidebar__menu-wrapper">
+      <ul class="sidebar-menu-list">
+        <nuxt-link to="/dashboard">
+          <li class="sidebar-menu-list__item">
+            <div>
+              <font-awesome-icon
+                class="siderbar-icon"
+                :icon="['fa-solid', 'fa-house']"
+              />
+            </div>
+            Dashboard
+          </li>
+        </nuxt-link>
+        <nuxt-link to="/meus-resumos">
+          <li class="sidebar-menu-list__item">
+            <div>
+              <font-awesome-icon
+                class="siderbar-icon"
+                :icon="['fa-solid', 'fa-file-lines']"
+              />
+            </div>
+            Meus Resumos
+          </li>
+        </nuxt-link>
       </ul>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-:root {
-  --color-white: #fff;
-}
-
 .sidebar {
   background-color: var(--color-white);
   width: 300px;
   border-radius: 0px 12px 12px 0px;
+
+  &__logo {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__menu-wrapper {
+    padding: 20px;
+  }
 }
 
-.sidebar__menu {
-  padding: 20px;
+.sidebar-menu-list {
+  list-style: none;
+  padding: 0px;
+  margin: 60px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-  ul {
-    list-style: none;
+  &__item {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    border-radius: 8px;
+    transition: 0.3s;
 
-    li {
-      margin-bottom: 10px;
-
-      a {
-        text-decoration: none;
-        color: #000;
-        font-weight: bold;
-        font-size: 18px;
-      }
+    &:hover {
+      background: #3498db;
+      color: white;
     }
+
+    .siderbar-icon {
+    }
+  }
+
+  .router-link-active {
+    background: #3498db;
+    color: white;
+    border-radius: 8px;
   }
 }
 </style>
