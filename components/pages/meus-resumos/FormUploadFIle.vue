@@ -7,7 +7,7 @@ const formUpload = ref({
   description: "",
   subject: "mathematics",
   grade: "grade1",
-  model: 1,
+  mode: 1,
 });
 
 const isShowUploadButton = ref(true);
@@ -108,7 +108,7 @@ const grades = {
     </div>
     <div class="form-group">
       <label for="model">Selecione o modelo</label><br />
-      <select class="form-control-select" id="model" v-model="formUpload.model">
+      <select class="form-control-select" id="model" v-model="formUpload.mode">
         <option
           :key="model.id"
           :value="model.id"
@@ -180,6 +180,7 @@ const grades = {
   line-height: 21px;
   width: 100%;
   padding: 10px;
+  margin-top: 9px;
 }
 
 .form-group {
