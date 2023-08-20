@@ -11,8 +11,8 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 
 De que coisas você precisa para conseguir utilizar o projeto em sua maquina local ? 
 
-* [Node.js](http://www.dropwizard.io/1.0.2/docs/](https://nodejs.org/en))
-* [Vue.js]([https://maven.apache.org/](https://vuejs.org/guide/quick-start.html))
+* [Node.js](https://nodejs.org/en)
+* [Vue.js]((https://vuejs.org/guide/quick-start.html))
 * [Nuxt](https://v2.nuxt.com/pt/)
 
 ### 🔧 Instalação
@@ -70,8 +70,7 @@ Dê uma olhada nos nossos projetos complementares para obter uma compreensão ma
 
 ## 📌 Versão
 
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
-
+Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis
 
 
 ## 🎁 Expressões de gratidão
