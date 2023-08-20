@@ -1,37 +1,71 @@
 <template>
   <div>
+    <div>
+      <button @click="showToast">Mostrar Toast</button>
+    </div>
     <div class="container" id="container">
       <div class="form-container sign-up-container" @submit.prevent="signUp">
         <form action="#">
           <h1>Criar Conta</h1>
-          <input v-model="signUpData.name" type="text" placeholder="Name" />
-          <input v-model="signUpData.email" type="email" placeholder="Email" />
-          <input
-            v-model="signUpData.password"
-            type="password"
-            placeholder="Password"
-          />
+          <div class="input-container">
+            <div>
+              <font-awesome-icon :icon="['fa-solid', 'user']" />
+            </div>
+            <input v-model="signUpData.name" type="text" placeholder="Name" />
+          </div>
+          <div class="input-container">
+            <div>
+              <font-awesome-icon :icon="['fa-solid', 'at']" />
+            </div>
+            <input
+              v-model="signUpData.email"
+              type="email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="input-container">
+            <div>
+              <font-awesome-icon :icon="['fa-solid', 'lock']" />
+            </div>
+            <input
+              v-model="signUpData.password"
+              type="password"
+              placeholder="Password"
+            />
+          </div>
           <button>Cadastrar</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
         <form class="form-login" @submit.prevent="signIn">
           <h1>Entrar</h1>
-          <input
-            v-model="signInData.email"
-            type="email"
-            name="email"
-            placeholder="Entre com seu email"
-            required
-          />
-          <input
-            v-model="signInData.password"
-            type="password"
-            name="password"
-            placeholder="Entre com sua senha"
-            required
-          />
-          <a href="#">Forgot your password?</a>
+          <div class="input-container">
+            <div>
+              <font-awesome-icon :icon="['fa-solid', 'at']" />
+            </div>
+            <input
+              v-model="signInData.email"
+              type="email"
+              name="email"
+              placeholder="Entre com seu email"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <div>
+              <font-awesome-icon
+                class="siderbar-icon"
+                :icon="['fa-solid', 'lock']"
+              />
+            </div>
+            <input
+              v-model="signInData.password"
+              type="password"
+              name="password"
+              placeholder="Entre com sua senha"
+              required
+            />
+          </div>
           <button>Entrar</button>
         </form>
       </div>
@@ -46,9 +80,9 @@
             <button class="ghost" id="signIn">Entrar</button>
           </div>
           <div class="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
+            <h1>Olá, Amigo!</h1>
+            <p>Entre com suas informações e comece sua jornada conosco</p>
+            <button class="ghost" id="signUp">Cadastrar</button>
           </div>
         </div>
       </div>
@@ -59,6 +93,9 @@
 <script>
 import { mapActions, mapState } from "pinia";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 export default {
   data() {
     return {
@@ -95,18 +132,28 @@ export default {
         const serializedValue = JSON.stringify(token);
         localStorage.setItem("token", serializedValue);
       } catch (err) {
-        console.log(err);
+        const errorMessage = err.response
+          ? err.response._data.message
+          : "Erro desconhecido";
+        toast.error((errorMessage));
       }
     },
-    signUp() {
-      console.log(
-        "name:",
-        this.signUpData.name,
-        "email:",
-        this.signUpData.email,
-        "and password:",
-        this.signUpData.password
-      );
+    async signUp() {
+      try {
+        const data = await $fetch("http://45.79.148.159/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.signUpData),
+        });
+        const token = data.token;
+        console.log("s");
+        //this.$router.push("/meus-resumos");
+        toast.success("Usuário criado com sucesso!");
+      } catch (err) {
+        toast.error("erro ao criar usuário");
+      }
     },
   },
   mounted() {
@@ -206,9 +253,17 @@ a {
 .form-container input {
   background: #eee;
   border: none;
+  padding: 0 0 0 10px;
+  width: 100%;
+  outline: none;
+}
+
+.input-container {
+  background: #eee;
   padding: 12px 15px;
   margin: 8px 0;
-  width: 100%;
+  display: flex;
+  border-radius: 10px;
 }
 
 button {

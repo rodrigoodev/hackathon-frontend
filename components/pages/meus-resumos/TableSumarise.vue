@@ -56,6 +56,7 @@ function deleteFile(id) {
       </div>
     </div>
     <div
+    :key="sumariseItem.id"
       class="table-sumarise__body"
       v-for="sumariseItem in getTableSumariseData"
     >

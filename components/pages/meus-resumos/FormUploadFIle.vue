@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
 const formUpload = ref({
   title: "",
   file: "",
@@ -60,8 +64,9 @@ async function sendForm() {
       body: JSON.stringify(formUpload.value),
     });
     console.log(data);
+    toast.success("Enviado com sucesso");
   } catch (err) {
-    console.log(err);
+    toast.error("Erro ao tentar enviar");
   }
 }
 </script>
@@ -95,7 +100,7 @@ async function sendForm() {
         id="category"
         v-model="formUpload.subject"
       >
-        <option :value="index" v-for="(subject, index) in subjects">
+        <option :key="index" :value="index" v-for="(subject, index) in subjects">
           {{ subject }}
         </option>
       </select>
@@ -107,7 +112,7 @@ async function sendForm() {
         id="grades"
         v-model="formUpload.grade"
       >
-        <option :value="index" v-for="(grade, index) in grades">
+        <option :key="index" :value="index" v-for="(grade, index) in grades">
           {{ grade }}
         </option>
       </select>

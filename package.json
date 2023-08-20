@@ -21,7 +21,8 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@pinia/nuxt": "^0.4.11",
     "pinia": "^2.1.6",
-    "sass": "^1.66.1"
+    "sass": "^1.66.1",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "overrides": {
     "vue": "latest"
