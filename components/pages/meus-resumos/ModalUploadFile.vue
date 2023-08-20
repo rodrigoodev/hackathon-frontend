@@ -2,6 +2,9 @@
 import FormUploadFile from "./FormUploadFIle.vue";
 
 import { useAuthStore } from "@/store/useAuthStore";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 function handleSendForm(formUpload) {
   console.log("send form", formUpload);
@@ -20,9 +23,11 @@ async function submitForm(form) {
       },
       body: JSON.stringify(form),
     });
+    toast.success("Resumo enviado com sucesso!");
     console.log(data);
   } catch (err) {
     console.log(err);
+    toast.error("Erro ao enviar resumo");
   }
 }
 </script>
