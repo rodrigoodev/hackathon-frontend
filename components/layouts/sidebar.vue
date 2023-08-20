@@ -27,6 +27,17 @@
             Meus Resumos
           </li>
         </nuxt-link>
+        <nuxt-link to="/">
+          <li class="sidebar-menu-list__item">
+            <div>
+              <font-awesome-icon
+                class="siderbar-icon"
+                :icon="['fa-solid', 'fa-file-lines']"
+              />
+            </div>
+            Sair
+          </li>
+        </nuxt-link>
       </ul>
     </div>
   </div>

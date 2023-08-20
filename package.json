@@ -30,7 +30,8 @@
     "pinia": "^2.1.6",
     "sass": "^1.66.1",
     "ts-jest": "^29.1.1",
-    "vue-jest": "^3.0.7"
+    "vue-jest": "^3.0.7",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "overrides": {
     "vue": "latest"
