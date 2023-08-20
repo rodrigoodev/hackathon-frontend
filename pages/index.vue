@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <button @click="showToast">Mostrar Toast</button>
+    </div>
     <div class="container" id="container">
       <div class="form-container sign-up-container" @submit.prevent="signUp">
         <form action="#">
@@ -90,6 +93,9 @@
 <script>
 import { mapActions, mapState } from "pinia";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 export default {
   data() {
     return {
@@ -126,18 +132,28 @@ export default {
         const serializedValue = JSON.stringify(token);
         localStorage.setItem("token", serializedValue);
       } catch (err) {
-        console.log(err);
+        const errorMessage = err.response
+          ? err.response._data.message
+          : "Erro desconhecido";
+        toast.error((errorMessage));
       }
     },
-    signUp() {
-      console.log(
-        "name:",
-        this.signUpData.name,
-        "email:",
-        this.signUpData.email,
-        "and password:",
-        this.signUpData.password
-      );
+    async signUp() {
+      try {
+        const data = await $fetch("http://45.79.148.159/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.signUpData),
+        });
+        const token = data.token;
+        console.log("s");
+        //this.$router.push("/meus-resumos");
+        toast.success("Usuário criado com sucesso!");
+      } catch (err) {
+        toast.error("erro ao criar usuário");
+      }
     },
   },
   mounted() {
